@@ -56,7 +56,11 @@ def check_for_stray_dylibs
   # with a short description of the software they come with.
   white_list = {
     "libfuse.2.dylib" => "MacFuse",
-    "libfuse_ino64.2.dylib" => "MacFuse"
+    "libfuse_ino64.2.dylib" => "MacFuse",
+    "libmacfuse_i32.2.dylib" => "osxfuse",
+    "libmacfuse_i64.2.dylib" => "osxfuse",
+    "libosxfuse_i32.2.dylib" => "osxfuse",
+    "libosxfuse_i64.2.dylib" => "osxfuse"
   }
 
   bad_dylibs = unbrewed_dylibs.reject {|d| white_list.key? File.basename(d) }
@@ -97,6 +101,8 @@ def check_for_stray_pcs
   # with a short description of the software they come with.
   white_list = {
     "fuse.pc" => "MacFuse",
+    "fuse-ext2.pc" => "osxfuse",
+    "osxfuse.pc" => "osxfuse"
   }
 
   bad_pcs = unbrewed_pcs.reject {|d| white_list.key? File.basename(d) }
@@ -120,6 +126,8 @@ def check_for_stray_las
   white_list = {
     "libfuse.la" => "MacFuse",
     "libfuse_ino64.la" => "MacFuse",
+    "libosxfuse_i32.la" => "osxfuse",
+    "libosxfuse_i64.la" => "osxfuse"
   }
 
   bad_las = unbrewed_las.reject {|d| white_list.key? File.basename(d) }
